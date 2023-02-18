@@ -58,7 +58,7 @@ public struct UndoProvider<WrappedView, Value>: View where WrappedView: View, Va
     /// - Parameters:
     ///   - binding: The binded value.
     ///   - wrappedView: The wrapped view.
-    init(_ binding: Binding<Value>, @ViewBuilder wrappedView: @escaping (Binding<Value>) -> WrappedView) {
+    public init(_ binding: Binding<Value>, @ViewBuilder wrappedView: @escaping (Binding<Value>) -> WrappedView) {
         self.binding = binding
         self.wrappedView = wrappedView
     }

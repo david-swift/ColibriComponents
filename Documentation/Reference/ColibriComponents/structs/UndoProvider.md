@@ -69,7 +69,7 @@ The binding observed to register the actions.
 ### `init(_:wrappedView:)`
 
 ```swift
-init(_ binding: Binding<Value>, @ViewBuilder wrappedView: @escaping (Binding<Value>) -> WrappedView)
+public init(_ binding: Binding<Value>, @ViewBuilder wrappedView: @escaping (Binding<Value>) -> WrappedView)
 ```
 
 The initializer.
