@@ -3,10 +3,10 @@
 # `Color.RGBA`
 
 ```swift
-internal enum RGBA: CodingKey
+internal enum RGBA
 ```
 
-The values of an RGBA representation (red, green, blue and alpha)
+The values of an RGBA representation (red, green, blue and alpha).
 
 ## Cases
 ### `red`

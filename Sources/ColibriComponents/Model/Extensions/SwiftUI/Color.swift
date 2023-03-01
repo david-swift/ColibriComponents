@@ -21,16 +21,17 @@ extension Color: Codable {
     /// Initialize a color from encoded data.
     /// - Parameter decoder: Decodes the RGB values from a native format into in-memory representations.
     public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: RGBA.self)
-        let red = try values.decode(Double.self, forKey: .red)
-        let green = try values.decode(Double.self, forKey: .green)
-        let blue = try values.decode(Double.self, forKey: .blue)
-        let alpha = try values.decode(Double.self, forKey: .alpha)
-        self.init(red: red, green: green, blue: blue, opacity: alpha)
+        let container = try decoder.singleValueContainer()
+        let colorData = try container.decode(Data.self)
+        guard let nsColor = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: colorData) else {
+            self.init(white: 0)
+            return
+        }
+        self = Color(nsColor: nsColor)
     }
 
-    /// The values of an RGBA representation (red, green, blue and alpha)
-    internal enum RGBA: CodingKey {
+    /// The values of an RGBA representation (red, green, blue and alpha).
+    internal enum RGBA {
         /// The red RGBA value.
         case red
         /// The green RGBA value.
@@ -44,11 +45,10 @@ extension Color: Codable {
     /// Encode a color into a native format for external representation.
     /// - Parameter encoder: Encodes the RGBA value.
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: RGBA.self)
-        try container.encode(red, forKey: .red)
-        try container.encode(green, forKey: .green)
-        try container.encode(blue, forKey: .blue)
-        try container.encode(alpha, forKey: .alpha)
+        var container = encoder.singleValueContainer()
+        let nsColor = NSColor(self)
+        let colorData = try NSKeyedArchiver.archivedData(withRootObject: nsColor, requiringSecureCoding: false)
+        try container.encode(colorData)
     }
 
     /// Get a certain RGBA value.
@@ -57,7 +57,8 @@ extension Color: Codable {
     internal func getRGBA(_ color: RGBA) -> CGFloat {
         var red, green, blue, alpha: CGFloat
         (red, green, blue, alpha) = (0, 0, 0, 0)
-        NSColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let nsColor = NSColor(self)
+        nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         switch color {
         case .red:
             return red
