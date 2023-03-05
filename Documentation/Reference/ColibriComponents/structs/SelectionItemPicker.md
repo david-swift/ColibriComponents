@@ -20,7 +20,7 @@ The active selection.
 ### `hover`
 
 ```swift
-@Binding var hover: UUID?
+@State private var hover: UUID?
 ```
 
 The active hover.
@@ -42,6 +42,24 @@ public var body: some View
 The picker's view.
 
 ## Methods
+### `init(selection:items:)`
+
+```swift
+public init(selection: Binding<UUID>, items: [SelectionItem])
+```
+
+An initializer for the ``SelectionItemPicker``.
+- Parameters:
+  - selection: The selected item's identifier.
+  - items: The items.
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| selection | The selected item’s identifier. |
+| items | The items. |
+
 ### `iconView(_:)`
 
 ```swift

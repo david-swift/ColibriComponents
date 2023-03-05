@@ -201,7 +201,7 @@ A picker view for types with an identifier, title, and icon.
 
 ```swift
 let items = [SomeSelectionItem("Swift", icon: .swift)]
-SelectionItemPicker(selection: $selection, hover: $hover, items: items)
+SelectionItemPicker(selection: $selection, items: items)
 ```
 
 ### Toolbar

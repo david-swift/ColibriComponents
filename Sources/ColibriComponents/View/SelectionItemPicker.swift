@@ -14,7 +14,7 @@ public struct SelectionItemPicker: View {
     /// The active selection.
     @Binding var selection: UUID
     /// The active hover.
-    @Binding var hover: UUID?
+    @State private var hover: UUID?
     /// The available items.
     var items: [SelectionItem]
 
@@ -36,6 +36,15 @@ public struct SelectionItemPicker: View {
                 .buttonStyle(.plain)
             }
         }
+    }
+
+    /// An initializer for the ``SelectionItemPicker``.
+    /// - Parameters:
+    ///   - selection: The selected item's identifier.
+    ///   - items: The items.
+    public init(selection: Binding<UUID>, items: [SelectionItem]) {
+        self._selection = selection
+        self.items = items
     }
 
     /// The icon of an item.
@@ -94,7 +103,7 @@ struct SelectionItemPicker_Previews: PreviewProvider, View {
 
     /// The view's body.
     var body: some View {
-        SelectionItemPicker(selection: $selection, hover: $hover, items: items)
+        SelectionItemPicker(selection: $selection, items: items)
     }
 
     /// An example selection item type.
