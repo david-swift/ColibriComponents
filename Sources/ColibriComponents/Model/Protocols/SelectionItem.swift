@@ -17,7 +17,7 @@ public protocol SelectionItem {
     /// The identifier.
     var id: Identifier { get }
     /// The title.
-    var title: String { get set }
+    var title: String { get }
     /// The icon.
     var icon: SFSymbol { get }
 
