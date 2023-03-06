@@ -11,8 +11,11 @@ import SwiftUI
 /// A type that can be used in a ``SelectionItemPicker``.
 public protocol SelectionItem {
 
+    /// The identifier's type.
+    associatedtype Identifier: Hashable
+
     /// The identifier.
-    var id: UUID { get }
+    var id: Identifier { get }
     /// The title.
     var title: String { get set }
     /// The icon.

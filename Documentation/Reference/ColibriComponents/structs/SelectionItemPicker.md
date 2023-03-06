@@ -3,7 +3,7 @@
 # `SelectionItemPicker`
 
 ```swift
-public struct SelectionItemPicker: View
+public struct SelectionItemPicker<Item>: View where Item: SelectionItem
 ```
 
 A picker for an array of ``SelectionItem``.
@@ -12,7 +12,7 @@ A picker for an array of ``SelectionItem``.
 ### `selection`
 
 ```swift
-@Binding var selection: UUID
+@Binding var selection: Item.Identifier
 ```
 
 The active selection.
@@ -20,7 +20,7 @@ The active selection.
 ### `hover`
 
 ```swift
-@State private var hover: UUID?
+@State private var hover: Item.Identifier?
 ```
 
 The active hover.
@@ -28,7 +28,7 @@ The active hover.
 ### `items`
 
 ```swift
-var items: [SelectionItem]
+var items: [Item]
 ```
 
 The available items.
@@ -45,7 +45,7 @@ The picker's view.
 ### `init(selection:items:)`
 
 ```swift
-public init(selection: Binding<UUID>, items: [SelectionItem])
+public init(selection: Binding<Item.Identifier>, items: [Item])
 ```
 
 An initializer for the ``SelectionItemPicker``.
@@ -63,7 +63,7 @@ An initializer for the ``SelectionItemPicker``.
 ### `iconView(_:)`
 
 ```swift
-private func iconView(_ item: SelectionItem) -> some View
+private func iconView(_ item: Item) -> some View
 ```
 
 The icon of an item.
@@ -79,7 +79,7 @@ The icon of an item.
 ### `title(_:)`
 
 ```swift
-private func title(_ item: SelectionItem) -> some View
+private func title(_ item: Item) -> some View
 ```
 
 The title of an item.

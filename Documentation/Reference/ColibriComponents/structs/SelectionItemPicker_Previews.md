@@ -52,7 +52,7 @@ The identifier of the hovered item.
 ### `items`
 
 ```swift
-let items: [SelectionItem] = [
+let items: [PreviewSelectionItem] = [
     PreviewSelectionItem(id: .init(), title: "Snow", icon: .snowflake),
     PreviewSelectionItem(id: .init(), title: "Swift", icon: .swift)
 ]

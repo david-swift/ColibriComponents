@@ -9,14 +9,14 @@ import SFSafeSymbols
 import SwiftUI
 
 /// A picker for an array of ``SelectionItem``.
-public struct SelectionItemPicker: View {
+public struct SelectionItemPicker<Item>: View where Item: SelectionItem {
 
     /// The active selection.
-    @Binding var selection: UUID
+    @Binding var selection: Item.Identifier
     /// The active hover.
-    @State private var hover: UUID?
+    @State private var hover: Item.Identifier?
     /// The available items.
-    var items: [SelectionItem]
+    var items: [Item]
 
     /// The picker's view.
     public var body: some View {
@@ -42,7 +42,7 @@ public struct SelectionItemPicker: View {
     /// - Parameters:
     ///   - selection: The selected item's identifier.
     ///   - items: The items.
-    public init(selection: Binding<UUID>, items: [SelectionItem]) {
+    public init(selection: Binding<Item.Identifier>, items: [Item]) {
         self._selection = selection
         self.items = items
     }
@@ -50,7 +50,7 @@ public struct SelectionItemPicker: View {
     /// The icon of an item.
     /// - Parameter item: The item.
     /// - Returns: The icon of the item.
-    private func iconView(_ item: SelectionItem) -> some View {
+    private func iconView(_ item: Item) -> some View {
         SelectionSymbolView(
             hover: (hover == item.id).binding { newValue in
                 if newValue {
@@ -67,7 +67,7 @@ public struct SelectionItemPicker: View {
     /// The title of an item.
     /// - Parameter item: The item.
     /// - Returns: The title of the item.
-    private func title(_ item: SelectionItem) -> some View {
+    private func title(_ item: Item) -> some View {
         Text(item.title)
             .font(.caption)
             .foregroundColor(selection == item.id ? .accentColor : .primary)
@@ -96,7 +96,7 @@ struct SelectionItemPicker_Previews: PreviewProvider, View {
     /// The identifier of the hovered item.
     @State private var hover: UUID?
     /// The presented items.
-    let items: [SelectionItem] = [
+    let items: [PreviewSelectionItem] = [
         PreviewSelectionItem(id: .init(), title: "Snow", icon: .snowflake),
         PreviewSelectionItem(id: .init(), title: "Swift", icon: .swift)
     ]

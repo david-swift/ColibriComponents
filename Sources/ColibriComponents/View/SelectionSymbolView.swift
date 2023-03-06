@@ -9,14 +9,14 @@ import SFSafeSymbols
 import SwiftUI
 
 /// A single item for the ``SelectionItemPicker``.
-struct SelectionSymbolView: View {
+struct SelectionSymbolView<Item>: View where Item: SelectionItem {
 
     /// Whether the item is hovered.
     @Binding var hover: Bool
     /// Whether the item is selected.
     var isSelected: Bool
     /// The item.
-    var item: SelectionItem
+    var item: Item
 
     /// The view.
     var body: some View {

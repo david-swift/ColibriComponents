@@ -12,7 +12,7 @@ A type that can be used in a ``SelectionItemPicker``.
 ### `id`
 
 ```swift
-var id: UUID
+var id: Identifier
 ```
 
 The identifier.

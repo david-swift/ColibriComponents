@@ -3,7 +3,7 @@
 # `SelectionSymbolView`
 
 ```swift
-struct SelectionSymbolView: View
+struct SelectionSymbolView<Item>: View where Item: SelectionItem
 ```
 
 A single item for the ``SelectionItemPicker``.
@@ -28,7 +28,7 @@ Whether the item is selected.
 ### `item`
 
 ```swift
-var item: SelectionItem
+var item: Item
 ```
 
 The item.
