@@ -24,13 +24,17 @@ class UndoHandler<Value>: ObservableObject where Value: ActionRepresentable {
     /// - Parameters:
     ///   - oldValue: The value without the change.
     ///   - newValue: The value with the change.
-    func registerUndo(from oldValue: Value, to newValue: Value) {
+    ///   - redo: Whether it's a redo action.
+    func registerUndo(from oldValue: Value, to newValue: Value, redo: Bool = false) {
         undoManager?.registerUndo(withTarget: self) { handler in
-            handler.registerUndo(from: newValue, to: oldValue)
+            handler.registerUndo(from: newValue, to: oldValue, redo: true)
             handler.binding?.wrappedValue = oldValue
         }
         undoManager?.setActionName(
-            String(localized: Value.actionRepresentation(oldValue: oldValue, newValue: newValue))
+            String(localized: Value.actionRepresentation(
+                oldValue: redo ? newValue : oldValue,
+                newValue: redo ? oldValue : newValue
+            ))
         )
     }
 

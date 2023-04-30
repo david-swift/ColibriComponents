@@ -30,7 +30,7 @@ _ColibriComponents_ contains some components I often use in my packages and apps
 | Freeform Toolbar                            | A toolbar for inside a window that floats over another view.                                                                                                                              |
 | Optional Picker                             | A picker with the option to not choose any of the values presented by the picker by pressing on the selected option. It is mainly used in the window toolbar.                             |
 | Selection Item Picker                       | A picker for elements conforming to `SelectionItem`.                                                                                                                                      |
-| Undo Provider                               | A wrapper around a view for observing a `Binding` and registering the changes to support the undo and redo buttons in the menu bar.                                                       |
+| Undo Provider                               | A wrapper around a scene for observing a `Binding` and registering the changes to support the undo and redo buttons in the menu bar.                                                       |
 | Array builder                               | A result builder for building any array. It supports `if`, `else` and `switch` statements as well as `for..in` loops.                                                                     |
 | Folder                                      | A type for grouping any other type. The folder has an identifier, a title, an icon, and content.                                                                                          |
 | Initializers with `LocalizedStringResource` | Initializers for many SwiftUI views and modifiers with `LocalizedStringResource` instead of `StringProtocol`.                                                                             |
@@ -227,12 +227,14 @@ A custom toolbar for inside a SwiftUI view.
 ```
 
 ### Undo Provider
-A wrapper around a view observing the changes of a binding and providing undo and redo actions in the menu bar.
+A wrapper around a scene observing the changes of a binding and providing undo and redo actions in the menu bar.
 
 ```swift
 UndoProvider($test) { $test in
-    Button("Hello") {
-        test = "Hello"
+    WindowGroup {
+        Button("Hello") {
+            test = "Hello"
+        }
     }
 }
 ```

@@ -27,16 +27,17 @@ weak var undoManager: UndoManager?
 The UndoManager used by the UndoHandler.
 
 ## Methods
-### `registerUndo(from:to:)`
+### `registerUndo(from:to:redo:)`
 
 ```swift
-func registerUndo(from oldValue: Value, to newValue: Value)
+func registerUndo(from oldValue: Value, to newValue: Value, redo: Bool = false)
 ```
 
 Registers the undo and redo actions.
 - Parameters:
   - oldValue: The value without the change.
   - newValue: The value with the change.
+  - redo: Whether it's a redo action.
 
 #### Parameters
 
@@ -44,3 +45,4 @@ Registers the undo and redo actions.
 | ---- | ----------- |
 | oldValue | The value without the change. |
 | newValue | The value with the change. |
+| redo | Whether it’s a redo action. |
