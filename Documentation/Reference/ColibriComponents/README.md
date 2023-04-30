@@ -13,6 +13,10 @@
 -   [Button_Previews](structs/Button_Previews.md)
 -   [CustomToolbarButton](structs/CustomToolbarButton.md)
 -   [Folder](structs/Folder.md)
+-   [FreeFormToolbarAction_Previews](structs/FreeFormToolbarAction_Previews.md)
+-   [FreeformToolbar](structs/FreeformToolbar.md)
+-   [FreeformToolbarAction](structs/FreeformToolbarAction.md)
+-   [FreeformToolbar_Previews](structs/FreeformToolbar_Previews.md)
 -   [OptionalPicker](structs/OptionalPicker.md)
 -   [OptionalPicker_Previews](structs/OptionalPicker_Previews.md)
 -   [SelectionItemPicker](structs/SelectionItemPicker.md)
@@ -26,8 +30,6 @@
 -   [ToolbarAction](structs/ToolbarAction.md)
 -   [ToolbarGroup](structs/ToolbarGroup.md)
 -   [UndoProvider](structs/UndoProvider.md)
--   [UndoProvider_Previews](structs/UndoProvider_Previews.md)
--   [UndoProvider_Previews.Num](structs/UndoProvider_Previews.Num.md)
 -   [ViewPreview](structs/ViewPreview.md)
 
 ## Classes
