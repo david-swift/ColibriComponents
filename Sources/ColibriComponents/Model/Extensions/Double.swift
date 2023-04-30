@@ -32,3 +32,5 @@ extension Double {
     internal static var freeformActionOpacity: Self { 0.7 }
 
 }
+
+// swiftlint:enable no_magic_numbers

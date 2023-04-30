@@ -14,3 +14,5 @@ extension Int: Bindable {
     internal static var selectionItemPickerLineLimit: Self { 2 }
 
 }
+
+// swiftlint:enable no_magic_numbers

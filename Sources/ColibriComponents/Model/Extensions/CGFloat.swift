@@ -40,3 +40,5 @@ extension CGFloat {
     internal static var freeformForegroundSidelength: Self { 13 }
 
 }
+
+// swiftlint:enable no_magic_numbers
