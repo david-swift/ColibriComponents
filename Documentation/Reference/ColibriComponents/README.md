@@ -2,7 +2,6 @@
 
 ## Protocols
 
--   [ActionRepresentable](protocols/ActionRepresentable.md)
 -   [Bindable](protocols/Bindable.md)
 -   [SelectionItem](protocols/SelectionItem.md)
 
@@ -29,18 +28,14 @@
 -   [TaggedView_Previews](structs/TaggedView_Previews.md)
 -   [ToolbarAction](structs/ToolbarAction.md)
 -   [ToolbarGroup](structs/ToolbarGroup.md)
--   [UndoProvider](structs/UndoProvider.md)
 -   [ViewPreview](structs/ViewPreview.md)
-
-## Classes
-
--   [UndoHandler](classes/UndoHandler.md)
 
 ## Enums
 
 -   [ArrayBuilder](enums/ArrayBuilder.md)
 -   [ArrayBuilder.Component](enums/ArrayBuilder.Component.md)
 -   [Color.RGBA](enums/Color.RGBA.md)
+-   [UndoProvider](enums/UndoProvider.md)
 
 ## Extensions
 

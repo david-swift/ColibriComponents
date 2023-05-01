@@ -2,10 +2,6 @@
 
 # `Bindable`
 
-```swift
-public protocol Bindable
-```
-
 Protocol to track the changes of a binding.
 
 Create a binding by adding a setter to a value:
