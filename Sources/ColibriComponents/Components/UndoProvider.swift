@@ -9,56 +9,32 @@
 //  https://nilcoalescing.com/blog/HandlingUndoAndRedoInSwiftUI/ (28.09.20)
 //
 
-import SwiftUI
+import AppKit
 
-/// Registers the undo and redo actions of a binding.
-/// Thanks to Matthaus Woolard for the article "Handling undo & redo in SwiftUI".
+/// Register undo and redo actions.
 ///
-/// A wrapper around a scene observing the changes of a binding and registering the undo and redo actions:
-/// ```swift
-/// UndoProvider($test) { test in
-///     ContentView(test: test)
-/// }
-/// ```
-public struct UndoProvider<WrappedScene, Value>: Scene where WrappedScene: Scene, Value: ActionRepresentable {
+/// An example implementation with a view model:
+///   ```swift
+///   class ViewModel: ObservableObject {
+///     @Published var text: String = "" {
+///         didSet {
+///             UndoProvider.registerUndo(withTarget: self, set: { $0.text = oldValue })
+///         }
+///     }
+///   }
+///   ```
+public enum UndoProvider {
 
-    /// The undo manager used by the ``UndoProvider``.
-    @Environment(\.undoManager) var undoManager
-    /// The undo handler used by the ``UndoProvider``.
-    @StateObject var handler: UndoHandler<Value> = UndoHandler()
-
-    /// The wrapped scene.
-    var wrappedScene: (Binding<Value>) -> WrappedScene
-    /// The binded value.
-    var binding: Binding<Value>
-
-    /// The view body.
-    public var body: some Scene {
-        wrappedScene(self.interceptedBinding)
-            .onChange(of: undoManager) { undoManager in
-                handler.undoManager = undoManager
-            }
-    }
-
-    /// The binding observed to register the actions.
-    var interceptedBinding: Binding<Value> {
-        Binding {
-            binding.wrappedValue
-        } set: { newValue in
-            handler.registerUndo(from: self.binding.wrappedValue, to: newValue)
-            binding.wrappedValue = newValue
-        }
-    }
-
-    /// The initializer.
+    /// Registers the undo and redo actions.
+    /// Thanks to Matthaus Woolard for the article "Handling undo & redo in SwiftUI".
     /// - Parameters:
-    ///   - binding: The binded value.
-    ///   - wrappedScene: The wrapped scene.
-    public init(_ binding: Binding<Value>, @SceneBuilder wrappedScene: @escaping (Binding<Value>) -> WrappedScene) {
-        self.binding = binding
-        self.wrappedScene = wrappedScene
-        handler.binding = binding
-        handler.undoManager = undoManager
+    ///   - target: The target object, usually the observable object with the property.
+    ///   - set: The closure that assigns the old value to the property.
+    public static func registerUndo<TargetType>(
+        withTarget target: TargetType,
+        set: @escaping (TargetType) -> Void
+    ) where TargetType: AnyObject {
+        NSApplication.shared.keyWindow?.undoManager?.registerUndo(withTarget: target, handler: set)
     }
 
 }
