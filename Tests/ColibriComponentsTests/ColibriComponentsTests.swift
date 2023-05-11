@@ -4,6 +4,7 @@
 //
 //  Created by david-swift on 24.01.23.
 //
+// swiftlint:disable superfluous_disable_command
 // swiftlint:disable no_magic_numbers
 
 import ColibriComponents
@@ -121,3 +122,4 @@ final class ColibriComponentsTests: XCTestCase {
 }
 
 // swiftlint:enable no_magic_numbers
+// swiftlint:enable superfluous_disable_command

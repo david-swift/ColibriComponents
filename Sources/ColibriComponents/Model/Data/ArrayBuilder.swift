@@ -36,7 +36,7 @@ public enum ArrayBuilder<Element> {
         /// An element as a component.
         case element(_: Element)
         /// An array of components as a component.
-        case components(_: [Component])
+        case components(_: [Self])
 
     }
 
