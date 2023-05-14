@@ -29,12 +29,17 @@ public enum UndoProvider {
     /// Thanks to Matthaus Woolard for the article "Handling undo & redo in SwiftUI".
     /// - Parameters:
     ///   - target: The target object, usually the observable object with the property.
+    ///   - undoManager: If you do not want to use the key window's undo manager, specify one here.
     ///   - set: The closure that assigns the old value to the property.
     public static func registerUndo<TargetType>(
         withTarget target: TargetType,
+        undoManager: UndoManager? = NSApplication.shared.keyWindow?.undoManager,
         set: @escaping (TargetType) -> Void
     ) where TargetType: AnyObject {
-        NSApplication.shared.keyWindow?.undoManager?.registerUndo(withTarget: target, handler: set)
+        undoManager?.registerUndo(withTarget: target) { target in
+            set(target)
+            registerUndo(withTarget: target) { set($0) }
+        }
     }
 
 }

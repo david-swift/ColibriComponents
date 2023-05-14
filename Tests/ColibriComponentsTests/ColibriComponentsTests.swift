@@ -14,6 +14,17 @@ import XCTest
 /// Tests for the ``ColibriComponents``.
 final class ColibriComponentsTests: XCTestCase {
 
+    /// A value for testing the undo provider.
+    @Published var testValue = "" {
+        didSet {
+            UndoProvider.registerUndo(withTarget: self, undoManager: undoManager) { tests in
+                tests.testValue = oldValue
+            }
+        }
+    }
+    /// An undo manager for testing the undo provider.
+    let undoManager = UndoManager()
+
     /// An example structure for testing the id subscript used in ``testIDSubscript()``.
     struct Element: Identifiable {
 
@@ -117,6 +128,26 @@ final class ColibriComponentsTests: XCTestCase {
             "World"
         }
         XCTAssertEqual(folder.content, ["Hello", "World"])
+    }
+
+    /// Test the undo provider.
+    func testUndoProvider() {
+        testValue = "Hello"
+        undoManager.undo()
+        XCTAssertEqual(testValue, "")
+        undoManager.redo()
+        XCTAssertEqual(testValue, "Hello")
+        testValue = "Nice"
+        undoManager.undo()
+        XCTAssertEqual(testValue, "Hello")
+        undoManager.undo()
+        XCTAssertEqual(testValue, "")
+        undoManager.undo()
+        XCTAssertEqual(testValue, "")
+        undoManager.redo()
+        XCTAssertEqual(testValue, "Hello")
+        undoManager.redo()
+        XCTAssertEqual(testValue, "Nice")
     }
 
 }
