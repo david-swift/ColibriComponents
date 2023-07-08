@@ -2,10 +2,6 @@
 
 # `UndoProvider`
 
-```swift
-public enum UndoProvider
-```
-
 Register undo and redo actions.
 
 An example implementation with a view model:
@@ -22,25 +18,9 @@ An example implementation with a view model:
 ## Methods
 ### `registerUndo(withTarget:undoManager:set:)`
 
-```swift
-public static func registerUndo<TargetType>(
-    withTarget target: TargetType,
-    undoManager: UndoManager? = NSApplication.shared.keyWindow?.undoManager,
-    set: @escaping (TargetType) -> Void
-) where TargetType: AnyObject
-```
-
 Registers the undo and redo actions.
 Thanks to Matthaus Woolard for the article "Handling undo & redo in SwiftUI".
 - Parameters:
   - target: The target object, usually the observable object with the property.
   - undoManager: If you do not want to use the key window's undo manager, specify one here.
   - set: The closure that assigns the old value to the property.
-
-#### Parameters
-
-| Name | Description |
-| ---- | ----------- |
-| target | The target object, usually the observable object with the property. |
-| undoManager | If you do not want to use the key window’s undo manager, specify one here. |
-| set | The closure that assigns the old value to the property. |

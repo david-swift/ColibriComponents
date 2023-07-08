@@ -24,24 +24,24 @@ _ColibriComponents_ contains some components I often use in my packages and apps
 
 ## Elements
 
-| Name                                        | Description                                                                                                                                                                               |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Toolbar                                     | A toolbar for inside a window, supporting grouped buttons and toggles.                                                                                                                    |
-| Freeform Toolbar                            | A toolbar for inside a window that floats over another view.                                                                                                                              |
-| Optional Picker                             | A picker with the option to not choose any of the values presented by the picker by pressing on the selected option. It is mainly used in the window toolbar.                             |
-| Selection Item Picker                       | A picker for elements conforming to `SelectionItem`.                                                                                                                                      |
-| Undo Provider                               | A function for providing undo and redo functionality in a macOS app.                                                                                                                      |
-| Array builder                               | A result builder for building any array. It supports `if`, `else` and `switch` statements as well as `for..in` loops.                                                                     |
-| Folder                                      | A type for grouping any other type. The folder has an identifier, a title, an icon, and content.                                                                                          |
-| Initializers with `LocalizedStringResource` | Initializers for many SwiftUI views and modifiers with `LocalizedStringResource` instead of `StringProtocol`.                                                                             |
-| Predefined buttons                          | Functions for creating cancel buttons, default buttons such as add buttons and confirmation buttons, and delete buttons.                                                                  |
-| Color RGBA                                  | Get the RGBA values for a color directly. This enables encoding and decoding of colors.                                                                                                   |
-| Safe subscript                              | Access elements of an array safely. If an index is out of range, it returns `nil`, else, it returns the element at the index. It is also possible to set new values using this subscript. |
-| ID subscript                                | Access identifiable elements in an array safely with the identifier.                                                                                                                      |
-| Editable bounds                             | The upper and lower bound of a `ClosedRange` and `Range` but with a safe setter.                                                                                                          |
-| Map value in range                          | A function for comparable types that maps the value in a certain `ClosedRange` or `Range`.                                                                                                |
-| Bindable                                    | Adds a method for defining a setter for getting a `Binding`.Many of the standard types conform to `Bindable`.                                                                             |
-| Geometry                                    | A view modifier for observing the geometry of a view.                                                                                                                                     |
+| Name                                    | Description                                                                                                                                                                               |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Toolbar                                 | A toolbar for inside a window, supporting grouped buttons and toggles.                                                                                                                    |
+| Freeform Toolbar                        | A toolbar for inside a window that floats over another view.                                                                                                                              |
+| Optional Picker                         | A picker with the option to not choose any of the values presented by the picker by pressing on the selected option. It is mainly used in the window toolbar.                             |
+| Selection Item Picker                   | A picker for elements conforming to `SelectionItem`.                                                                                                                                      |
+| Undo Provider                           | A function for providing undo and redo functionality in a macOS app.                                                                                                                      |
+| Array builder                           | A result builder for building any array. It supports `if`, `else` and `switch` statements as well as `for..in` loops.                                                                     |
+| Folder                                  | A type for grouping any other type. The folder has an identifier, a title, an icon, and content.                                                                                          |
+| Easier to use `LocalizedStringResource` | Simplify the initialization of SwiftUI views and other initializers using `StringProtocol` for `LocalizedStringResource`.                                                                 |
+| Predefined buttons                      | Functions for creating cancel buttons, default buttons such as add buttons and confirmation buttons, and delete buttons.                                                                  |
+| Color RGBA                              | Get the RGBA values for a color directly. This enables encoding and decoding of colors.                                                                                                   |
+| Safe subscript                          | Access elements of an array safely. If an index is out of range, it returns `nil`, else, it returns the element at the index. It is also possible to set new values using this subscript. |
+| ID subscript                            | Access identifiable elements in an array safely with the identifier.                                                                                                                      |
+| Editable bounds                         | The upper and lower bound of a `ClosedRange` and `Range` but with a safe setter.                                                                                                          |
+| Map value in range                      | A function for comparable types that maps the value in a certain `ClosedRange` or `Range`.                                                                                                |
+| Bindable                                | Adds a method for defining a setter for getting a `Binding`.Many of the standard types conform to `Bindable`.                                                                             |
+| Geometry                                | A view modifier for observing the geometry of a view.                                                                                                                                     |
 
 ## Installation
 
@@ -104,6 +104,13 @@ let color = Color(red: 0.5, green: 0.5, blue: 0.5)
 print(color.blue)
 ```
 
+### Easier to Use `LocalizedStringResource`
+Initialize SwiftUI components using `LocalizedStringResource`.  
+
+```swift
+Button(.init("Hello", comment: "A localized string resource!")) { }
+```
+
 ### Editable Bounds
 Edit the bounds of a `ClosedRange` or `Range`.
 
@@ -151,13 +158,6 @@ Access and set identifiable elements of an array by providing the identifier.
 ```swift
 let array: [Element] = [.init(id: "hello"), .init(id: "world)]
 print(array[id: "hello"]?.id ?? "error")
-```
-
-### Initializers with `LocalizedStringResource`
-Initializers with `LocalizedStringResource` for many SwiftUI views and modifiers.
-
-```swift
-Button(.init("Hello", comment: "A localized string resource!")) { }
 ```
 
 ### Map Value in Range

@@ -8,19 +8,6 @@
 import SFSafeSymbols
 import SwiftUI
 
-extension Button where Label == Text {
-
-    /// Initialize a button with a localized title key.
-    /// - Parameters:
-    ///   - titleKey: A localized title key.
-    ///   - role: The button role if there is one, else nil. The default value is nil.
-    ///   - action: The action that is executed when the button is being tapped.
-    public init(_ titleKey: LocalizedStringResource, role: ButtonRole? = nil, action: @escaping () -> Void) {
-        self.init(String(localized: titleKey), role: role, action: action)
-    }
-
-}
-
 extension Button where Label == SwiftUI.Label<Text, Image> {
 
     /// A cancel button.
@@ -45,7 +32,7 @@ extension Button where Label == SwiftUI.Label<Text, Image> {
         action: @escaping () -> Void
     ) -> some View {
         Button(action: action) {
-            SwiftUI.Label(title, systemSymbol: symbol)
+            SwiftUI.Label(title.localized, systemSymbol: symbol)
         }
         .keyboardShortcut(.defaultAction)
     }

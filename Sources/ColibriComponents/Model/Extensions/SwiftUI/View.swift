@@ -36,27 +36,6 @@ extension View {
             .contentShape(Rectangle())
     }
 
-    /// A SwiftUI navigation title but with a localized title.
-    /// - Parameter title: The localized title.
-    /// - Returns: A view with the navigation title.
-    public func navigationTitle(_ title: LocalizedStringResource) -> some View {
-        navigationTitle(String(localized: title))
-    }
-
-    /// A SwiftUI accessibility label but with a localized title.
-    /// - Parameter title: The localized title.
-    /// - Returns: A view with the accessibility label.
-    public func accessibilityLabel(_ title: LocalizedStringResource) -> some View {
-        accessibilityLabel(String(localized: title))
-    }
-
-    /// A SwiftUI help modifier but with a localized title.
-    /// - Parameter message: The localized message.
-    /// - Returns: A view with the help modifier.
-    public func help(_ message: LocalizedStringResource) -> some View {
-        help(String(localized: message))
-    }
-
     /// Observe the geometry of the view.
     /// - Parameter action: Get the geometry when the view appears and whenever the geometry changes.
     /// - Returns: The view.

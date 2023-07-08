@@ -150,6 +150,18 @@ final class ColibriComponentsTests: XCTestCase {
         XCTAssertEqual(testValue, "Nice")
     }
 
+    /// Test the initializer with `LocalizedStringResource` for the SwiftUI Picker.
+    func testLocalizedStringResourceInitializer() {
+        _ = Picker(
+            .init("Localized String Resource", comment: "ColibriComponentsTests (Test)"),
+            selection: .constant("")
+        ) { }
+        _ = Picker(
+            "",
+            selection: .constant("")
+        ) { }
+    }
+
 }
 
 // swiftlint:enable no_magic_numbers
