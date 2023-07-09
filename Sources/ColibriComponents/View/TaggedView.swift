@@ -45,7 +45,7 @@ struct TaggedView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             taggedView
-                .bold()
+                .font(.body.bold())
             Text("Tag: \(taggedView.tag)")
         }
         .padding()

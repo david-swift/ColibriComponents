@@ -15,6 +15,16 @@ struct FreeformToolbarAction: View {
     /// The toolbar action.
     var action: ToolbarAction
 
+    /// The icon's foreground color.
+    var foregroundColor: AnyShapeStyle {
+        let color = action.isOn ? Color.accentColor : .primary.opacity(.freeformActionOpacity)
+        if #available(macOS 13, *) {
+            return .init(color.gradient)
+        } else {
+            return .init(color)
+        }
+    }
+
     /// The view's body.
     var body: some View {
         Button {
@@ -24,11 +34,17 @@ struct FreeformToolbarAction: View {
                 .frame(width: .freeformBackgroundSidelength, height: .freeformBackgroundSidelength)
                 .foregroundColor(.secondary.opacity(hover ? .freeformBackgroundOpacity : 0))
                 .overlay {
-                    action.icon
-                        .frame(width: .freeformForegroundSidelength, height: .freeformForegroundSidelength)
-                        .foregroundStyle(
-                            (action.isOn ? Color.accentColor : Color.primary.opacity(.freeformActionOpacity)).gradient
-                        )
+                    if #available(macOS 13, *) {
+                        action.icon
+                            .frame(width: .freeformForegroundSidelength, height: .freeformForegroundSidelength)
+                            .foregroundStyle(foregroundColor)
+                    } else {
+                        action.icon
+                            .frame(width: .freeformForegroundSidelength, height: .freeformForegroundSidelength)
+                            .foregroundStyle(
+                                action.isOn ? Color.accentColor : Color.primary.opacity(.freeformActionOpacity)
+                            )
+                    }
                 }
         }
         .buttonStyle(.plain)

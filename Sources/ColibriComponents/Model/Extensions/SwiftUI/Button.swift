@@ -8,6 +8,7 @@
 import SFSafeSymbols
 import SwiftUI
 
+@available(macOS 13, *)
 extension Button where Label == SwiftUI.Label<Text, Image> {
 
     /// A cancel button.
@@ -68,6 +69,7 @@ extension Button where Label == SwiftUI.Label<Text, Image> {
 }
 
 /// Previews for the predefined buttons.
+@available(macOS 13, *)
 struct Button_Previews: PreviewProvider {
 
     /// The previews.

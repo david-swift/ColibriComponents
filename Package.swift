@@ -12,7 +12,7 @@ import PackageDescription
 let package = Package(
     name: "ColibriComponents",
     platforms: [
-        .macOS(.v13)
+        .macOS(.v12)
     ],
     products: [
         .library(

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(macOS 13, *)
 extension LocalizedStringResource {
 
     /// The localized string.

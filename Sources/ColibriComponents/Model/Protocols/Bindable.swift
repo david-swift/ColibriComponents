@@ -45,7 +45,7 @@ struct Bindable_Previews: PreviewProvider, View {
     /// The view's body.
     var body: some View {
         TextField(
-            .init("Test", comment: "Bindable (A localized string resource for testing purposes)"),
+            "Test",
             text: text.binding { newValue in
                 print(newValue)
                 text = newValue

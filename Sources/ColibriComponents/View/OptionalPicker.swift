@@ -23,7 +23,7 @@ public struct OptionalPicker<SelectionValue, Content>: View where SelectionValue
     /// The active selection.
     @Binding var selection: SelectionValue
     /// The picker's title.
-    var titleKey: LocalizedStringResource
+    var titleKey: LocalizedStringKey
     /// The options' labels.
     var labels: [TaggedView<SelectionValue, Content>]
     /// The value that is selected if there is no valid value selected.
@@ -32,7 +32,7 @@ public struct OptionalPicker<SelectionValue, Content>: View where SelectionValue
     /// The picker's view.
     public var body: some View {
         Picker(
-            String(localized: titleKey),
+            titleKey,
             selection: Binding {
                 defaultValue
             } set: { newValue in
@@ -53,7 +53,7 @@ public struct OptionalPicker<SelectionValue, Content>: View where SelectionValue
     ///   - defaultValue: The selected value if there is no valid value selected.
     ///   - labels: The options.
     public init(
-        _ titleKey: LocalizedStringResource,
+        _ titleKey: LocalizedStringKey,
         selection: Binding<SelectionValue>,
         defaultValue: SelectionValue,
         @ArrayBuilder<TaggedView<SelectionValue, Content>> labels: () -> ([TaggedView<SelectionValue, Content>])
@@ -83,7 +83,7 @@ struct OptionalPicker_Previews: PreviewProvider, View {
     /// The view body.
     var body: some View {
         OptionalPicker(
-            .init("Hello, world!", comment: "OptionalPicker (A hello world message for testing purposes)"),
+            "Hello, world!",
             selection: $selection,
             defaultValue: .init()
         ) {
@@ -95,7 +95,7 @@ struct OptionalPicker_Previews: PreviewProvider, View {
     /// The label for the snow picker value.
     private var snowLabel: TaggedView<String, Label<Text, Image>> {
         Label(
-            .init("Snow", comment: "OptionalPicker (A picker value for testing purposes)"),
+            "Snow",
             systemSymbol: .snowflake
         )
         .tagged("Snow")
@@ -104,7 +104,7 @@ struct OptionalPicker_Previews: PreviewProvider, View {
     /// The label for the swift picker value.
     private var swiftLabel: TaggedView<String, Label<Text, Image>> {
         Label(
-            .init("Swift", comment: "OptionalPicker (A picker value for testing purposes)"),
+            "Swift",
             systemSymbol: .swift
         )
         .tagged("Swift")

@@ -13,6 +13,10 @@ Whether the action is hovered.
 
 The toolbar action.
 
+### `foregroundColor`
+
+The icon's foreground color.
+
 ### `body`
 
 The view's body.

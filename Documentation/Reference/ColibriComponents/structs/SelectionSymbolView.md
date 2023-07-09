@@ -17,6 +17,10 @@ Whether the item is selected.
 
 The item.
 
+### `foregroundColor`
+
+The icon's foreground color.
+
 ### `body`
 
 The view.

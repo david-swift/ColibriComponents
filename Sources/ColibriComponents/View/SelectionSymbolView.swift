@@ -18,11 +18,21 @@ struct SelectionSymbolView<Item>: View where Item: SelectionItem {
     /// The item.
     var item: Item
 
+    /// The icon's foreground color.
+    var foregroundColor: AnyShapeStyle {
+        let color = isSelected ? Color.accentColor : .primary
+        if #available(macOS 13, *) {
+            return .init(color.gradient)
+        } else {
+            return .init(color)
+        }
+    }
+
     /// The view.
     var body: some View {
         Image(systemSymbol: item.icon)
             .accessibilityLabel(item.title)
-            .foregroundStyle(isSelected ? Color.accentColor.gradient : Color.primary.gradient)
+            .foregroundStyle(foregroundColor)
             .font(.system(size: .selectionSymbolViewFontSize))
             .padding()
             .toolbarBackground(hover: hover, isSelected: isSelected)
