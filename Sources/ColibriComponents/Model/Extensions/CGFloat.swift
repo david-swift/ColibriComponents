@@ -13,11 +13,11 @@ extension CGFloat {
     /// The side length of a custom toolbar item.
     internal static var customToolbarSideLength: Self { 20 }
     /// The padding of a custom toolbar.
-    internal static var customToolbarPadding: Self { 10 }
+    internal static var customToolbarPadding: Self { 5 }
     /// The corner radius in many user interface elements.
     public static var colibriCornerRadius: Self { 10 }
     /// The height of a custom toolbar.
-    internal static var customToolbarHeight: Self { 40 }
+    internal static var customToolbarHeight: Self { 20 }
     /// The scale of the button of a custom toolbar action that is not pressed.
     internal static var customToolbarButtonNotPressedScale: Self { 0.6 }
     /// The minimum width of an item in a ``SelectionItemPicker``.
@@ -38,6 +38,8 @@ extension CGFloat {
     internal static var freeformBackgroundSidelength: Self { 22 }
     /// The sidelength of the image in the foreground of a Freeform toolbar.
     internal static var freeformForegroundSidelength: Self { 13 }
+    /// An offset for the custom toolbar.
+    internal static var customToolbarOffsetCorrection: Self { 2 }
 
 }
 

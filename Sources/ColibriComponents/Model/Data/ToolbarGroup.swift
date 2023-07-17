@@ -31,18 +31,9 @@ public struct ToolbarGroup: Identifiable, View {
             }
         }
         .background(
-            .thickMaterial.opacity(hover ? 1 : .toolbarGroupBackground),
+            .secondary.opacity((hover || actions.allSatisfy { $0.isOn }) ? .toolbarGroupSecondaryBackground : 0),
             in: rectangle
         )
-        .background(.secondary.opacity(hover ? .toolbarGroupSecondaryBackground : 0), in: rectangle)
-        .animation(
-            .default.speed(.hoverAnimationSpeed).delay(hover ? .toolbarGroupAnimationDelay : 0),
-            value: hover
-        )
-        .overlay {
-            rectangle
-                .stroke(.secondary.opacity(.toolbarStrokeOpacity))
-        }
         .onHover { hover = $0 }
         if addSpacer {
             Spacer()

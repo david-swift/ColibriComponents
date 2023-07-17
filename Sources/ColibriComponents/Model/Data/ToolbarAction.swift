@@ -57,7 +57,6 @@ public struct ToolbarAction: Identifiable {
                 icon
             }
             .customToolbarItem(padding: padding)
-            .foregroundColor(isOn ? .accentColor : .primary)
         }
         .buttonStyle(CustomToolbarButton())
         .help(title)

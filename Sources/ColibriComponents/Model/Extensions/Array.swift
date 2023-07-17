@@ -75,6 +75,7 @@ extension Array: View where Element == ToolbarGroup {
         }
         .padding(.customToolbarPadding)
         .frame(height: .customToolbarHeight)
+        .offset(y: .customToolbarOffsetCorrection)
     }
 
 }
@@ -105,7 +106,11 @@ struct Array_Previews: PreviewProvider, View {
         }
         ToolbarGroup {
             ToolbarAction(.init(), systemSymbol: .circle) {
-                testCount = 0
+                if testCount == 0 {
+                    testCount = 1
+                } else {
+                    testCount = 0
+                }
             }
             .isOn(testCount == 0)
         }
