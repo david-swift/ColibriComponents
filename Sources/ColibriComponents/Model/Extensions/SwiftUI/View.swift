@@ -92,7 +92,7 @@ extension View {
     public func customToolbarBackground(visible: Bool) -> some View {
         background(
             .secondary.opacity(visible ? .toolbarGroupSecondaryBackground : 0),
-            in: .rect(cornerRadius: .colibriCornerRadius)
+            in: RoundedRectangle(cornerRadius: .colibriCornerRadius)
         )
     }
 
