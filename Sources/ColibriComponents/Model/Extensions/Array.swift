@@ -91,12 +91,28 @@ struct Array_Previews: PreviewProvider, View {
     /// The toolbar groups.
     @ArrayBuilder<ToolbarGroup> var toolbar: [ToolbarGroup] {
         ToolbarGroup {
-            ToolbarAction(.init(), systemSymbol: .plus) {
-                testCount += 1
+            ToolbarMenu(.init(), systemSymbol: .plus) {
+                Button("+1") {
+                    testCount += 1
+                }
+                Button("+5") {
+                    let five = 5
+                    testCount += five
+                }
+                Button("+10") {
+                    let ten = 10
+                    testCount += ten
+                }
             }
             ToolbarAction(.init(), systemSymbol: .minus) {
                 testCount -= 1
             }
+        }
+        .spacer()
+        ToolbarGroup {
+            let maximum = 50.0
+            ProgressView(value: Double(testCount) / maximum)
+                .padding()
         }
         .spacer()
         ToolbarGroup {

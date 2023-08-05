@@ -9,7 +9,7 @@ import SFSafeSymbols
 import SwiftUI
 
 /// A button in a custom toolbar.
-public struct ToolbarAction: Identifiable {
+public struct ToolbarAction: ToolbarActionProtocol, Identifiable {
 
     /// The identifier of the toolbar action.
     public let id: UUID
@@ -20,7 +20,7 @@ public struct ToolbarAction: Identifiable {
     /// The action.
     var action: () -> Void
     /// Whether the toggle is activated.
-    var isOn: Bool
+    public var isOn: Bool
 
     /// The initializer.
     /// - Parameters:
@@ -47,19 +47,21 @@ public struct ToolbarAction: Identifiable {
     /// The action's view.
     /// - Parameter padding: The horizontal padding around the button.
     /// - Returns: A view containing the action button.
-    func body(padding: Edge.Set) -> some View {
-        Button {
-            action()
-        } label: {
-            Label {
-                Text(title)
-            } icon: {
-                icon
+    public func body(padding: Edge.Set) -> AnyView {
+        .init(
+            Button {
+                action()
+            } label: {
+                Label {
+                    Text(title)
+                } icon: {
+                    icon
+                }
+                .customToolbarItem(padding: padding)
             }
-            .customToolbarItem(padding: padding)
-        }
-        .buttonStyle(CustomToolbarButton())
-        .help(title)
+            .buttonStyle(CustomToolbarButton())
+            .help(title)
+        )
     }
 
     /// Add a binding to convert this action into a toggle.

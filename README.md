@@ -26,7 +26,7 @@ _ColibriComponents_ contains some components I often use in my packages and apps
 
 | Name                                                        | Description                                                                                                                                                                               |
 | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Toolbar                                                     | A toolbar for inside a window, supporting grouped buttons and toggles.                                                                                                                    |
+| Toolbar                                                     | A toolbar for inside a window, supporting grouped buttons, toggles, menus and custom views.                                                                                               |
 | Freeform Toolbar                                            | A toolbar for inside a window that floats over another view.                                                                                                                              |
 | Optional Picker                                             | A picker with the option to not choose any of the values presented by the picker by pressing on the selected option. It is mainly used in the window toolbar.                             |
 | Selection Item Picker                                       | A picker for elements conforming to `SelectionItem`.                                                                                                                                      |
@@ -210,12 +210,25 @@ A custom toolbar for inside a SwiftUI view.
 ```swift
 @ArrayBuilder<ToolbarGroup> var toolbar: [ToolbarGroup] {
     ToolbarGroup {
-        ToolbarAction("Plus", systemSymbol: .plus) {
-            print("Plus")
+        ToolbarMenu(.init(), systemSymbol: .plus) {
+            Button("+1") {
+                print("+1")
+            }
+            Button("+5") {
+                print("+5")
+            }
+            Button("+10") {
+                print("+10")
+            }
         }
         ToolbarAction("Minus", systemSymbol: .minus) {
             print("Minus")
         }
+    }
+    .spacer()
+    ToolbarGroup {
+        ProgressView(value: 0.5)
+            .padding()
     }
     .spacer()
     ToolbarGroup {

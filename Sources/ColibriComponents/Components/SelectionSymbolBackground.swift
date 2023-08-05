@@ -14,28 +14,20 @@ struct SelectionSymbolBackground: ViewModifier {
     var hover: Bool
     /// Whether it is selected.
     var isSelected = false
+    /// The opacity of the background when hovered.
+    var hoverBackgroundOpacity: Double = .hoveredSymbolBackgroundOpacity
 
     /// The background color.
     var color: Color { isSelected ? .accentColor : .secondary }
     /// The background opacity.
     var opacity: Double {
-        isSelected ? .selectionSymbolBackgroundOpacity : (hover ? .hoveredSymbolBackgroundOpacity : 0)
-    }
-
-    /// The initializer.
-    /// - Parameters:
-    ///   - hover: Whether it is hovered.
-    ///   - isSelected: Whether it is selected.
-    init(hover: Bool, isSelected: Bool = false) {
-        self.hover = hover
-        self.isSelected = isSelected
+        isSelected ? .selectionSymbolBackgroundOpacity : (hover ? hoverBackgroundOpacity : 0)
     }
 
     /// The modifier's body.
     /// - Parameter content: The content provided by the user.
     /// - Returns: The modified view.
     func body(content: Content) -> some View {
-
         content
             .background(color.opacity(opacity), in: RoundedRectangle(cornerRadius: .colibriCornerRadius))
             .animation(.default.speed(.hoverAnimationSpeed), value: hover)

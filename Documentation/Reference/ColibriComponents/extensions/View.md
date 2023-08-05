@@ -3,7 +3,7 @@
 # `View`
 
 ## Methods
-### `toolbarBackground(hover:isSelected:)`
+### `toolbarBackground(hover:isSelected:opacity:)`
 
 The background of a custom toolbar item.
 - Parameters:
@@ -40,3 +40,9 @@ https://support.apple.com/guide/freeform/welcome/mac
   - yOffset: The offset on the y axis.
   - _:  The toolbar actions.
 - Returns: A view with the toolbar.
+
+### `customToolbarBackground(visible:)`
+
+Style a view to fit into the custom toolbar.
+- Parameter visible: The visibility of the background.
+- Returns: The view with the background if visible is true, otherwise the view.

@@ -13,6 +13,14 @@ The identifier of the toolbar action group.
 
 Actions  in the group.
 
+### `content`
+
+The content view.
+
+### `background`
+
+Whether the background is displayed.
+
 ### `addSpacer`
 
 Whether there is a spacer after the group.
@@ -25,12 +33,8 @@ Whether the toolbar group is hovered. If true, the background color changes.
 
 The group's view.
 
-### `rectangle`
-
-A rounded rectangle used for the background and stroke of a toolbar group.
-
 ## Methods
-### `init(_:)`
+### `init(background:_:body:)`
 
 The initializer of ``ToolbarGroup``.
 - Parameters:

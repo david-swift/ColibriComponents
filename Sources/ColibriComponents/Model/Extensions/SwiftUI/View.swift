@@ -14,8 +14,12 @@ extension View {
     ///   - hover: Whether it is hovered.
     ///   - isSelected: Whether it is selected.
     /// - Returns: The modified view.
-    internal func toolbarBackground(hover: Bool, isSelected: Bool = false) -> some View {
-        modifier(SelectionSymbolBackground(hover: hover, isSelected: isSelected))
+    internal func toolbarBackground(
+        hover: Bool,
+        isSelected: Bool = false,
+        opacity: Double = .hoveredSymbolBackgroundOpacity
+    ) -> some View {
+        modifier(SelectionSymbolBackground(hover: hover, isSelected: isSelected, hoverBackgroundOpacity: opacity))
     }
 
     /// Attach a tag to the view.
@@ -80,6 +84,16 @@ extension View {
                     .offset(x: xOffset, y: yOffset)
             }
         }
+    }
+
+    /// Style a view to fit into the custom toolbar.
+    /// - Parameter visible: The visibility of the background.
+    /// - Returns: The view with the background if visible is true, otherwise the view.
+    public func customToolbarBackground(visible: Bool) -> some View {
+        background(
+            .secondary.opacity(visible ? .toolbarGroupSecondaryBackground : 0),
+            in: .rect(cornerRadius: .colibriCornerRadius)
+        )
     }
 
 }

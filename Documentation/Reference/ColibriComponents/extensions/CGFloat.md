@@ -58,3 +58,7 @@ The sidelength of the circle in the background of a Freeform toolbar.
 ### `freeformForegroundSidelength`
 
 The sidelength of the image in the foreground of a Freeform toolbar.
+
+### `customToolbarOffsetCorrection`
+
+An offset for the custom toolbar.

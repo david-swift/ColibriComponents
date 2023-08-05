@@ -13,6 +13,10 @@ Whether it is hovered.
 
 Whether it is selected.
 
+### `hoverBackgroundOpacity`
+
+The opacity of the background when hovered.
+
 ### `color`
 
 The background color.
@@ -22,13 +26,6 @@ The background color.
 The background opacity.
 
 ## Methods
-### `init(hover:isSelected:)`
-
-The initializer.
-- Parameters:
-  - hover: Whether it is hovered.
-  - isSelected: Whether it is selected.
-
 ### `body(content:)`
 
 The modifier's body.

@@ -19,10 +19,6 @@ The speed of hover animations.
 
 The delay of the hover animation in a custom toolbar group when the hovering starts.
 
-### `toolbarStrokeOpacity`
-
-The opacity of the stroke in custom toolbars.
-
 ### `selectionSymbolBackgroundOpacity`
 
 The opacity of the background of a selection item if selected.
