@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(macOS 13, *)
+@available(iOS 16, *)
 extension ExpressibleByStringLiteral where Self == String {
 
     /// Creates a localized string resource from a static string and its bundle properties.
@@ -107,6 +108,7 @@ extension ExpressibleByStringLiteral where Self == String {
 }
 
 @available(macOS 13, *)
+@available(iOS 16, *)
 extension ExpressibleByStringLiteral where Self == LocalizedStringKey {
 
     /// Creates a localized string resource from a static string and its bundle properties.

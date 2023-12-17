@@ -23,11 +23,19 @@ extension Color: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let colorData = try container.decode(Data.self)
+        #if os(macOS)
         guard let nsColor = try NSKeyedUnarchiver.unarchivedObject(ofClass: NSColor.self, from: colorData) else {
             self.init(white: 0)
             return
         }
         self = Color(nsColor: nsColor)
+        #else
+        guard let uiColor = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData) else {
+            self.init(white: 0)
+            return
+        }
+        self = Color(uiColor: uiColor)
+        #endif
     }
 
     /// The values of an RGBA representation (red, green, blue and alpha).
@@ -46,8 +54,13 @@ extension Color: Codable {
     /// - Parameter encoder: Encodes the RGBA value.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
+        #if os(macOS)
         let nsColor = NSColor(self)
         let colorData = try NSKeyedArchiver.archivedData(withRootObject: nsColor, requiringSecureCoding: false)
+        #else
+        let uiColor = UIColor(self)
+        let colorData = try NSKeyedArchiver.archivedData(withRootObject: uiColor, requiringSecureCoding: false)
+        #endif
         try container.encode(colorData)
     }
 
@@ -57,8 +70,13 @@ extension Color: Codable {
     internal func getRGBA(_ color: RGBA) -> CGFloat {
         var red, green, blue, alpha: CGFloat
         (red, green, blue, alpha) = (0, 0, 0, 0)
+        #if os(macOS)
         let nsColor = NSColor(self)
         nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        #else
+        let uiColor = UIColor(self)
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        #endif
         switch color {
         case .red:
             return red

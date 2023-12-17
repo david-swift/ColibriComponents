@@ -152,7 +152,7 @@ final class ColibriComponentsTests: XCTestCase {
 
     /// Test the initializer with `LocalizedStringResource` for the SwiftUI Picker.
     func testLocalizedStringResourceInitializer() {
-        if #available(macOS 13, *) {
+        if #available(macOS 13, *), #available(iOS 16, *) {
             _ = Picker(
                 .init("Localized String Resource", comment: "ColibriComponentsTests (Test)"),
                 selection: .constant("")

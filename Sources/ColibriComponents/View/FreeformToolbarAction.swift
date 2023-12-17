@@ -18,7 +18,7 @@ struct FreeformToolbarAction: View {
     /// The icon's foreground color.
     var foregroundColor: AnyShapeStyle {
         let color = action.isOn ? Color.accentColor : .primary.opacity(.freeformActionOpacity)
-        if #available(macOS 13, *) {
+        if #available(macOS 13, *), #available(iOS 16, *) {
             return .init(color.gradient)
         } else {
             return .init(color)

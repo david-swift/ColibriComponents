@@ -21,7 +21,7 @@ struct SelectionSymbolView<Item>: View where Item: SelectionItem {
     /// The icon's foreground color.
     var foregroundColor: AnyShapeStyle {
         let color = isSelected ? Color.accentColor : .primary
-        if #available(macOS 13, *) {
+        if #available(macOS 13, *), #available(iOS 16, *) {
             return .init(color.gradient)
         } else {
             return .init(color)

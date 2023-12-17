@@ -18,19 +18,35 @@ struct FreeformToolbar: View {
     var body: some View {
         HStack {
             ForEach(actions) { action in
+                #if os(macOS)
+                let padding: CGFloat = .freeformActionPadding
+                #else
+                let addition = 10.0
+                let padding: CGFloat = .freeformActionPadding + addition
+                #endif
                 FreeformToolbarAction(action)
-                    .padding(.freeformActionPadding)
+                    .padding(padding)
             }
         }
         .padding(.freeformToolbarPadding)
         .background {
-            Capsule(style: .continuous)
+            let capsule = Capsule(style: .continuous)
                 .foregroundStyle(.bar)
+            #if os(macOS)
+            capsule
                 .shadow(
                     color: .init(nsColor: .shadowColor).opacity(.freeformToolbarShadowOpacity),
                     radius: .freeformToolbarShadowRadius,
                     y: .freeformToolbarShadowOffset
                 )
+            #else
+            capsule
+                .shadow(
+                    color: .init(uiColor: .systemGray5).opacity(.freeformToolbarShadowOpacity),
+                    radius: .freeformToolbarShadowRadius,
+                    y: .freeformToolbarShadowOffset
+                )
+            #endif
         }
     }
 

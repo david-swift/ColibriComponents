@@ -9,7 +9,11 @@
 //  https://nilcoalescing.com/blog/HandlingUndoAndRedoInSwiftUI/ (28.09.20)
 //
 
+#if os(macOS)
 import AppKit
+#else
+import UIKit
+#endif
 
 /// Register undo and redo actions.
 ///
@@ -25,6 +29,14 @@ import AppKit
 ///   ```
 public enum UndoProvider {
 
+    #if os(macOS)
+    /// The default undo manager for macOS.
+    public static let defaultUndoManager = NSApplication.shared.keyWindow?.undoManager
+    #else
+    /// The default undo manager for iOS.
+    public static let defaultUndoManager = UIApplication.shared.undoManager
+    #endif
+
     /// Registers the undo and redo actions.
     /// Thanks to Matthaus Woolard for the article "Handling undo & redo in SwiftUI".
     /// - Parameters:
@@ -33,7 +45,7 @@ public enum UndoProvider {
     ///   - set: The closure that assigns the old value to the property.
     public static func registerUndo<TargetType>(
         withTarget target: TargetType,
-        undoManager: UndoManager? = NSApplication.shared.keyWindow?.undoManager,
+        undoManager: UndoManager? = Self.defaultUndoManager,
         set: @escaping (TargetType) -> Void
     ) where TargetType: AnyObject {
         undoManager?.registerUndo(withTarget: target) { target in
