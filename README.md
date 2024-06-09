@@ -1,3 +1,6 @@
+> [!NOTE]
+> This project is no longer maintained.
+
 <p align="center">
   <img width="256" alt="ColibriComponents Icon" src="Icons/ColibriComponentsIcon.png">
   <h1 align="center">ColibriComponents</h1>
